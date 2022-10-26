@@ -102,6 +102,64 @@ public class Node {
                 this.rightChild.preordem();
         }
     }
+    
+    public int minimo() {
+
+        if (leftChild == null)
+
+              return data;
+
+        else
+
+              return leftChild.minimo();
+
+  }
+    
+    public boolean remove(int value, Node parent) {
+
+        if (value < this.data) {
+
+              if (leftChild != null)
+
+                    return leftChild.remove(value, this);
+
+              else
+
+                    return false;
+
+        } else if (value > this.data) {
+
+              if (rightChild != null)
+
+                    return rightChild.remove(value, this);
+
+              else
+
+                    return false;
+
+        } else {
+
+              if (leftChild != null && rightChild != null) {
+
+                    this.data = rightChild.minimo();
+
+                    rightChild.remove(this.data, this);
+
+              } else if (parent.leftChild == this) {
+
+                    parent.leftChild = (leftChild != null) ? leftChild : rightChild;
+
+              } else if (parent.rightChild == this) {
+
+                    parent.rightChild = (leftChild != null) ? leftChild : rightChild;
+
+              }
+
+              return true;
+
+        }
+
+  }
 
 
 
