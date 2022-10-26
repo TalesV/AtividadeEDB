@@ -54,35 +54,25 @@ public class Tree {
         }
     }
     
-    public boolean remove(int value) {
-
-        if (root == null)
-
-              return false;
-
+    public boolean remove(int data) {
+    	if (root == null) {
+    		return false;
+    	}
         else {
+        	if (root.data == data) {
+        		
+        		Node nodeAuxiliar = new Node(0);
+                nodeAuxiliar.setLeftChild(root);
+                boolean resultado = root.remove(nodeAuxiliar, data);
+                root = nodeAuxiliar.leftChild;
+                return resultado;
 
-              if (root.data == value) {
-
-                    Node auxRoot = new Node(0);
-
-                    auxRoot.setLeftChild(root);
-
-                    boolean result = root.remove(value, auxRoot);
-
-                    root = auxRoot.leftChild;
-
-                    return result;
-
-              } else {
-
-                    return root.remove(value, null);
-
-              }
-
+            } 
+        	else {
+        		return root.remove(null, data);
+            }
         }
-
-  }
+    }
 
 	public void insert(char val) {
 		if (root == null) {
