@@ -115,53 +115,46 @@ public class Node {
 
   }
     
-    public boolean remove(int value, Node parent) {
+    public boolean remove(Node parente, int data) {
 
-        if (value < this.data) {
-
-              if (leftChild != null)
-
-                    return leftChild.remove(value, this);
-
-              else
-
-                    return false;
-
-        } else if (value > this.data) {
-
-              if (rightChild != null)
-
-                    return rightChild.remove(value, this);
-
-              else
-
-                    return false;
-
-        } else {
-
-              if (leftChild != null && rightChild != null) {
-
-                    this.data = rightChild.minimo();
-
-                    rightChild.remove(this.data, this);
-
-              } else if (parent.leftChild == this) {
-
-                    parent.leftChild = (leftChild != null) ? leftChild : rightChild;
-
-              } else if (parent.rightChild == this) {
-
-                    parent.rightChild = (leftChild != null) ? leftChild : rightChild;
-
+        if (data < this.data) {
+        	if (leftChild != null) {
+        		return leftChild.remove(this, data);
               }
-
-              return true;
-
+        	else {
+        		return false;
+        	}
+        } 
+        else if (data > this.data) {
+        	if (rightChild != null) {
+        		return rightChild.remove(this, data);
+        	}
+        	else{
+        		return false;
+        	}
+        } 
+        else {
+        	if (leftChild != null && rightChild != null) {
+        		this.data = rightChild.minimo();
+                rightChild.remove(this, this.data);
+            } 
+        	else if (parente.leftChild == this) {
+        		if(leftChild != null) {
+        			parente.leftChild = leftChild;
+        		}
+        		else {
+        			parente.leftChild = rightChild;
+        		}
+            } 
+        	else if (parente.rightChild == this) {
+        		if(parente.leftChild != null) {
+        			parente.rightChild = leftChild;
+        		}
+        		else {
+        			parente.rightChild = rightChild;
+        		}
+            }
+        	return true;
         }
-
   }
-
-
-
-    
 }
