@@ -39,12 +39,18 @@ public class Tree {
             //caso "s" == 1
             //chama metodo que imprime no formato 1
             case 1:
-
+                System.out.println("Formato 1:");
+                root.imprimeCase1("\n");
+                System.out.println();
                 break;
 
             //caso "s" == 2
             //chama metodo que imprime no formato 2 
             case 2:
+            	System.out.println("Formato 2:");
+                root.imprimeCase2();
+                System.out.println();
+                System.out.println();
 
                 break;
             // caso não seja um parametro aceito
@@ -54,46 +60,24 @@ public class Tree {
         }
     }
     
-    public Node delete(Node root, int key){
-    	if(root == null) {
-    		return root;
+    public boolean remove(int data) {
+    	if (root == null) {
+    		return false;
     	}
-    	if(key > root.data) {
-    		root.rightChild = delete(root.rightChild, key);
-    	}
-    	else if(key < root.data) {
-    		root.leftChild = delete(root.rightChild, key);
-    	}
-    	else {
-    		if(root.leftChild == null && root.rightChild == null) {
-    			root = null;
-    		}
-    		else if(root.rightChild != null) {
-    			root.data = sucessor(root);
-    			root.rightChild = delete(root.rightChild, root.data);
-    		}
-    		else {
-    			root.data = predecessor(root);
-    			root.leftChild = delete(root.leftChild, root.data);
-    		}
-    	}
-    	return root;
-    }
-    
-    public int sucessor(Node root){
-        root = root.rightChild;
-        while(root.leftChild != null){
-            root = root.leftChild;
+        else {
+        	if (root.data == data) {
+        		
+        		Node nodeAuxiliar = new Node(0);
+                nodeAuxiliar.setLeftChild(root);
+                boolean resultado = root.remove(nodeAuxiliar, data);
+                root = nodeAuxiliar.leftChild;
+                return resultado;
+
+            } 
+        	else {
+        		return root.remove(null, data);
+            }
         }
-        return root.data;
-    }
-    
-    private int predecessor(Node root){
-        root = root.leftChild;
-        while(root.rightChild != null){
-            root = root.rightChild;
-        }
-        return root.data;
     }
 
 	public void insert(char val) {
