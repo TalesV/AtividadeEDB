@@ -9,10 +9,10 @@ public class ArvoreView {
 			tree.insert(i);
 		}
 		
-		char[] items2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+		int[] items2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 		
 		Tree tree2 = new Tree();
-		for (char i : items2) {
+		for (int i : items2) {
 			tree.insert(i);
 		}	
 		
