@@ -54,47 +54,35 @@ public class Tree {
         }
     }
     
-    public Node delete(Node root, int key){
-    	if(root == null) {
-    		return root;
-    	}
-    	if(key > root.data) {
-    		root.rightChild = delete(root.rightChild, key);
-    	}
-    	else if(key < root.data) {
-    		root.leftChild = delete(root.rightChild, key);
-    	}
-    	else {
-    		if(root.leftChild == null && root.rightChild == null) {
-    			root = null;
-    		}
-    		else if(root.rightChild != null) {
-    			root.data = sucessor(root);
-    			root.rightChild = delete(root.rightChild, root.data);
-    		}
-    		else {
-    			root.data = predecessor(root);
-    			root.leftChild = delete(root.leftChild, root.data);
-    		}
-    	}
-    	return root;
-    }
-    
-    public int sucessor(Node root){
-        root = root.rightChild;
-        while(root.leftChild != null){
-            root = root.leftChild;
+    public boolean remove(int value) {
+
+        if (root == null)
+
+              return false;
+
+        else {
+
+              if (root.data == value) {
+
+                    Node auxRoot = new Node(0);
+
+                    auxRoot.setLeftChild(root);
+
+                    boolean result = root.remove(value, auxRoot);
+
+                    root = auxRoot.leftChild;
+
+                    return result;
+
+              } else {
+
+                    return root.remove(value, null);
+
+              }
+
         }
-        return root.data;
-    }
-    
-    private int predecessor(Node root){
-        root = root.leftChild;
-        while(root.rightChild != null){
-            root = root.rightChild;
-        }
-        return root.data;
-    }
+
+  }
 
 	public void insert(char val) {
 		if (root == null) {
