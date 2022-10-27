@@ -79,6 +79,41 @@ public class Tree {
             }
         }
     }
+    
+    public int contadorNodes() {
+    	
+    	int contador = 0;
+    	
+    	if (root == null) {
+    		return contador;
+    	}
+    	Node aux = root;
+    	Node predecessor;
+    	while(aux != null) {
+    		if(aux.leftChild == null) {
+    			contador++;
+    			aux = aux.rightChild;
+    		}
+    		else {
+    			predecessor = aux.leftChild;
+    			
+    			while(predecessor.rightChild != null && predecessor.rightChild != aux) {
+    				predecessor = predecessor.rightChild;
+    			}
+    			
+    			if(predecessor.rightChild == null) {
+    				predecessor.rightChild = aux;
+    				aux = aux.leftChild;
+    			}
+    			else {
+    				predecessor.rightChild = null;
+    				contador++;
+    				aux = aux.rightChild;
+    			}
+    		}
+    	}
+    	return contador;	
+    }
 
 	public void insert(char val) {
 		if (root == null) {
