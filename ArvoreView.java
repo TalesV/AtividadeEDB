@@ -14,6 +14,7 @@ public class ArvoreView {
 			
 		System.out.println("Arvore Altura: " + tree.getAltura());
 		System.out.println("Arvore Tamanho: " + tree.getTamanho());
+		System.out.println("Quantidade de Nodes: " + tree.contadorNodes());
 		
 		tree.preordem();
 		
@@ -26,6 +27,7 @@ public class ArvoreView {
 		
 		System.out.println("Arvore Altura: " + tree.getAltura());
 		System.out.println("Arvore Tamanho: " + tree.getTamanho());
+		System.out.println("Quantidade de Nodes: " + tree.contadorNodes());
 		
 	}
 }
