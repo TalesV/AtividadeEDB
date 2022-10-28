@@ -101,8 +101,13 @@ public class Tree {
     	return contador;	
     }
     
-    public int enesimoElemento (int n) {
-    	return root.enesimoElemento(n);
+    public void enesimoElemento (int n) {
+    	System.out.println("A posição " +n+" é: "+
+    			root.enesimoElemento(n));
+    }
+    
+    public void Buscar(int n) {
+    	System.out.println(root.Buscar(n));
     }
 	public void insert(char val) {
 		if (root == null) {
