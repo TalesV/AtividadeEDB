@@ -4,11 +4,15 @@ public class Node {
     protected Node leftChild;
     protected Node rightChild;
     protected int data;
+    protected int quantEsq;
+    protected int quantDir;
 
     public Node(int val) {
         data = val;
         leftChild = null;
         rightChild = null;  
+        quantEsq = 0;
+        quantDir = 0;
     }
     
     public int getData() {
@@ -51,18 +55,31 @@ public class Node {
             else
                 this.rightChild.insert(val);
         }
+        if(this.leftChild != null) {
+        	this.quantEsq = this.leftChild.quantEsq +
+        			this.leftChild.quantDir + 1;
+        }
+        if(this.rightChild != null) {
+        	this.quantDir = this.rightChild.quantEsq +
+        			this.rightChild.quantDir + 1;
+        }
+        if(this.leftChild == null && this.rightChild == null) {
+        	this.quantEsq = 0;
+        	this.quantEsq = 0;
+        }
     }
     
-    public int getAltura() {
-        int alturaEsq = 0, alturaDir = 0;
-        
-        if (this.leftChild != null)
-            alturaEsq = this.leftChild.getAltura();
-                    
-        if (this.rightChild != null)
-            alturaDir = this.rightChild.getAltura();
-        
-        return 1 + Math.max(alturaEsq, alturaDir);
+    public int enesimoElemento (int n) {
+    	if(n == this.quantEsq + 1) {
+    		return this.data;
+    	}
+    	else if(n < this.quantEsq + 1) {
+    		return this.leftChild.enesimoElemento(n);
+    	}
+    	else {
+    		return this.rightChild.enesimoElemento(
+    				n - (this.quantEsq + 1));
+    	}
     }
     public boolean ehCompleta() {
         /*
@@ -80,17 +97,6 @@ public class Node {
         * ou this.rightchild == null ela não é completa.
          */
         return true;
-    }
-    public int getTamanho() {
-        int alturaEsq = 0, alturaDir = 0;
-        
-        if (this.leftChild != null)
-            alturaEsq = this.leftChild.getTamanho();
-                    
-        if (this.rightChild != null)
-            alturaDir = this.rightChild.getTamanho();
-        
-        return 1 + alturaEsq + alturaDir;           
     }
     
     public void preordem() {
@@ -117,7 +123,9 @@ public class Node {
     
     public void imprimeCase1(String ident) {
         if (this != null) {
-            System.out.print(ident + this.data);
+            System.out.print(ident + this.data
+            		+ "\tQuantEsq: "+ this.quantEsq
+            		+ "\tQuantDir: "+ this.quantDir);
             System.out.println();
             if (this.leftChild != null) {
                 this.leftChild.imprimeCase1(ident + "\t");
