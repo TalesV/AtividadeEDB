@@ -41,7 +41,10 @@ public class Node {
     }
 
     public void insert(int val) {
-        if (val < this.data) {
+    	if (val == this.data) {
+    		System.out.println( val +" já está na árvore, não pode ser inserido");
+    	}
+    	else if (val < this.data) {
             if (this.leftChild == null) {
                 this.leftChild = new Node(val);
             }
