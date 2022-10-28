@@ -14,24 +14,8 @@ public class Node {
         quantEsq = 0;
         quantDir = 0;
     }
+  
     
-    public int getData() {
-        return data;
-    }
-    
-    public Node getLeftChild() {
-        return leftChild;
-    }
-
-    public Node getRightChild() {
-        return rightChild;
-    }
-    
-
-    public void setData(int valor) {
-        this.data = valor;
-    }
-
     public void setLeftChild(Node leftChild) {
         this.leftChild = leftChild;
     }
@@ -65,10 +49,6 @@ public class Node {
         if(this.rightChild != null) {
         	this.quantDir = this.rightChild.quantEsq +
         			this.rightChild.quantDir + 1;
-        }
-        if(this.leftChild == null && this.rightChild == null) {
-        	this.quantEsq = 0;
-        	this.quantEsq = 0;
         }
     }
     
@@ -121,6 +101,38 @@ public class Node {
     	//Gambiarra
     	return -1000000;
     }
+    
+    public int Mediana() {
+        int tamanho = this.quantEsq + this.quantDir + 1;
+        return this.enesimoElemento(tamanho/2);
+    }
+    public double Media(int x) {
+    	if(Posicao(x) > 0) {
+    		int pos = Posicao(x);
+	    	if(pos == this.quantEsq +1) {
+	    		if(this.leftChild != null && this.rightChild !=null) {
+	    			return (double)(this.leftChild.data + this.rightChild.data)/2;
+	    		}
+	    		else if(this.leftChild != null && this.rightChild == null) {
+	    			return (double)(this.leftChild.data);
+	    		}
+	    		else if(this.leftChild == null && this.rightChild != null) {
+	    			return (double)(this.rightChild.data);
+	    		}
+	    		else
+	    			return -1;
+	    	}
+	    	else if(pos <= this.quantEsq) {
+	    		return this.leftChild.Media(x);
+	    	}
+	    	else {
+	    		return this.rightChild.Media(x);
+	    	}
+    	}
+    	else
+    		return -2;
+    }
+
     public boolean ehCompleta() {
         /*
          * Achar a altura dos nodos, se os nodos de altura 
@@ -163,9 +175,7 @@ public class Node {
     
     public void imprimeCase1(String ident) {
         if (this != null) {
-            System.out.print(ident + this.data
-            		+ "\tQuantEsq: "+ this.quantEsq
-            		+ "\tQuantDir: "+ this.quantDir);
+            System.out.print(ident + this.data);
             System.out.println();
             if (this.leftChild != null) {
                 this.leftChild.imprimeCase1(ident + "\t");
