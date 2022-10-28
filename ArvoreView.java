@@ -17,16 +17,15 @@ public class ArvoreView {
         String linhaString = br.readLine();
         br.close();
         String linhaArray[] = linhaString.split(" ");
-        int size = linhaArray.length;
-        int [] linhaInt = new int [size];
-        for(int i=0; i<size; i++) {
-           linhaInt[i] = Integer.parseInt(linhaArray[i]);
+        int quantidade = linhaArray.length;
+        int [] itens = new int [quantidade];
+        for(int i=0; i<quantidade; i++) {
+           itens[i] = Integer.parseInt(linhaArray[i]);
         }
-
 
         Tree tree = new Tree();
 
-        for (int i : linhaInt) {
+        for (int i : itens) {
             tree.insert(i);
         }
 		
@@ -35,13 +34,14 @@ public class ArvoreView {
 			
 		//System.out.println("Quantidade de Nodes: " + tree.contadorNodes());
 		
-		tree.preordem();
-		
-		tree.preordem();
-		
 		System.out.println();
-		
 		tree.enesimoElemento(3);
+		tree.preordem();
+		tree.remove(5);
+		tree.remove(70);
+		tree.preordem();
+		
+   
 		
 		tree.Buscar(20);
 		//System.out.println("Quantidade de Nodes: " + tree.contadorNodes());
