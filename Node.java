@@ -99,6 +99,24 @@ public class Node {
     	}
     	return flag;
     }
+    
+    public int Posicao(int n) {
+    	if(n == this.data) {
+    		return this.quantEsq +1;
+    	}
+    	else if(n < this.data) {
+    		if(this.leftChild != null) {
+    			return this.leftChild.Posicao(n);
+    		}
+    	}
+    	else {
+    		if(this.rightChild != null) {
+    			return this.quantEsq + 1 +
+    					this.rightChild.Posicao(n);
+    		}
+    	}
+    	return -1;
+    }
     public boolean ehCompleta() {
         /*
          * Achar a altura dos nodos, se os nodos de altura 
