@@ -10,6 +10,7 @@ public class Tree {
         }
         else 
             root.insert(val);
+        	System.out.println(val  + " Adicionado!");
     }
     
     public void preordem() {
@@ -17,6 +18,7 @@ public class Tree {
             System.out.println();
             System.out.print("Pre Ordem: ");
             root.preordem();
+            System.out.println();
         }
     }
     
@@ -41,14 +43,14 @@ public class Tree {
                 break;
             // caso não seja um parametro aceito
             default:
-                System.out.println("Valor inserido para impressão inválido");
+                System.out.println("Valor inserido para impressão inválido!");
 
         }
     }
     
-    public boolean remove(int data) {
+    public void remove(int data) {
     	if (root == null) {
-    		return false;
+    		System.out.println("Árvore vazia");
     	}
         else {
         	if (root.data == data) {
@@ -57,11 +59,18 @@ public class Tree {
                 nodeAuxiliar.setLeftChild(root);
                 boolean resultado = root.remove(nodeAuxiliar, data);
                 root = nodeAuxiliar.leftChild;
-                return resultado;
-
+                if (resultado == true) {
+                	System.out.println(data +" Removido");
+                }
             } 
         	else {
-        		return root.remove(null, data);
+        		 boolean resulta = root.remove(null, data);
+        		 if (resulta == true) {
+                 	System.out.println(data +" Removido");
+                 }
+                 else {
+                 	System.out.println(data +" não está na árvore, não pode ser removido");
+                 }
             }
         }
     }
@@ -107,15 +116,22 @@ public class Tree {
     }
     
     public void Buscar(int n) {
-    	System.out.println(root.Buscar(n));
+    	root.Buscar(n);
+    	if(root.Buscar(n) == true) {
+    		System.out.println("Chave encontrada");
+    	}
+    	else {
+    		System.out.println("Chave não encontrada");
+    	}
     }
-	public void insert(char val) {
-		if (root == null) {
-            root = new Node(val);
-        }
-        else 
-            root.insert(val);
-	}
   
-    
+    public void Posicao(int n) {
+        if(root.Posicao(n) <= 0) {
+            System.out.println("O elemento não faz parte da arvore.");
+        }
+        else {
+            System.out.println("O elemento "
+                    + n + " esta na " + root.Posicao(n)+"ª posicao!");
+        }
+    }
 }
