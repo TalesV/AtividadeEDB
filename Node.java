@@ -81,6 +81,24 @@ public class Node {
     				n - (this.quantEsq + 1));
     	}
     }
+    
+    public boolean Buscar(int n) {
+    	boolean flag = false;
+    	if(n == this.data) {
+    		flag = true;
+    	}
+    	else if(n < this.data) {
+    		if(this.leftChild != null) {
+    			flag = this.leftChild.Buscar(n);
+    		}
+    	}
+    	else {
+    		if(this.rightChild != null) {
+    			flag = this.rightChild.Buscar(n);
+    		}
+    	}
+    	return flag;
+    }
     public boolean ehCompleta() {
         /*
          * Achar a altura dos nodos, se os nodos de altura 
