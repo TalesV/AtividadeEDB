@@ -31,20 +31,19 @@ public class ArvoreView {
 		
 		tree.imprimeArvore(1);
 		tree.imprimeArvore(2);
-			
-		//System.out.println("Quantidade de Nodes: " + tree.contadorNodes());
 		
 		System.out.println();
 		tree.enesimoElemento(3);
 		tree.preordem();
-		tree.remove(5);
-		tree.remove(70);
-		tree.preordem();
 		
-   
 		
+		tree.Mediana();
+		tree.Media(32); // Possui dois nós filhos --> 13 e 41
+		tree.Media(41); // Possui um nó filho --> 60
+		tree.Media(60); // Não possui nós filhos
+		tree.Media(31); // Não pertence a árvore
+		tree.Media(13); // Caso problema --> 5 20. Deveria dar 12.5
 		tree.Buscar(20);
-		//System.out.println("Quantidade de Nodes: " + tree.contadorNodes());
 		
 	}
 }
