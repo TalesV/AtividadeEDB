@@ -109,13 +109,14 @@ public class Node {
     			return this.leftChild.Posicao(n);
     		}
     	}
-    	else {
+    	else{
     		if(this.rightChild != null) {
     			return this.quantEsq + 1 +
     					this.rightChild.Posicao(n);
     		}
     	}
-    	return -1;
+    	//Gambiarra
+    	return -1000000;
     }
     public boolean ehCompleta() {
         /*
