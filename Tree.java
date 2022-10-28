@@ -109,7 +109,21 @@ public class Tree {
     	}
     	return contador;	
     }
+    public void Mediana() {
+        System.out.println(root.Mediana());
+    }
     
+    public void Media(int x) {
+    	if(root.Media(x) == -2) {
+    		System.out.println("O elemento não pertence a arvore.");
+    	}
+    	else if(root.Media(x) == -1) {
+    		System.out.println("O elemento não possui nós filhos.");
+    	}
+    	else {
+    		System.out.println("A media e: "+ root.Media(x));
+    	}
+    }
     public void enesimoElemento (int n) {
     	System.out.println("A posição " +n+" é: "+
     			root.enesimoElemento(n));
