@@ -1,4 +1,4 @@
-package imd.edb;
+package edb;
 
 public class Node {
     protected Node leftChild;
@@ -142,12 +142,29 @@ public class Node {
         return true;
     }
     
+    public boolean ZeroDoisFilhos() {
+    	if(this.leftChild == null && this.rightChild != null ||
+    			this.leftChild != null && this.rightChild == null) {
+    		return false;
+    	}
+    	else
+    		return true;
+    }
     public boolean ehCheia() {
         /*
         * Achar a altura dos nodos, se os nodos de altura 
         * menor que (getAltura()) tiverem this.leftchild
         * ou this.rightchild == null ela não é completa.
          */
+    	if(this.leftChild != null) {
+    		this.leftChild.ehCheia();
+    	}
+    	if(this.rightChild != null) {
+    		this.rightChild.ehCheia();
+    	}
+    	if(this.ZeroDoisFilhos()) {
+    		return false;
+    	}
         return true;
     }
     
@@ -197,7 +214,7 @@ public class Node {
             System.out.print(")");
         }
     }
-    
+
     public boolean remove(Node parente, int data) {
 
         if (data < this.data) {
