@@ -1,4 +1,4 @@
-package imd.edb;
+package edb;
 
 public class Tree {
     
@@ -48,6 +48,23 @@ public class Tree {
         }
     }
     
+    public void ehCompleta() {
+    	if(root.ehCompleta()) {
+    		System.out.println("A árvore é completa.");
+    	}
+    	else {
+    		System.out.println("A árvore não é completa.");
+    	}
+    }
+    
+    public void ehCheia() {
+    	if(root.ehCheia()) {
+    		System.out.println("A árvore é cheia.");
+    	}
+    	else {
+    		System.out.println("A árvore não é cheia.");
+    	}
+    }
     public void remove(int data) {
     	if (root == null) {
     		System.out.println("Árvore vazia");
