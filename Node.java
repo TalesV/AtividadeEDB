@@ -1,4 +1,4 @@
-package edb;
+package imd.edb;
 
 public class Node {
     protected Node leftChild;
