@@ -31,7 +31,7 @@ public class ArvoreView {
         }
 		
 		tree.imprimeArvore(1);
-		tree.imprimeArvore(2);
+		/*tree.imprimeArvore(2);
 		
 		System.out.println();
 		tree.enesimoElemento(3);
@@ -49,7 +49,11 @@ public class ArvoreView {
 		tree.media(60); // Não possui nós filhos
 		tree.media(31); // Não pertence a árvore
 		tree.media(13); // Caso problema --> 5 20. Deveria dar 12.5
-		tree.buscar(20);
+		tree.buscar(20);*/
+        tree.buscarNode(5);
+        tree.buscar(5);
+        tree.media(13);
+        tree.quantSub(60);
 		
 	}
 }
