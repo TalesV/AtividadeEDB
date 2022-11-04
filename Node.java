@@ -83,50 +83,50 @@ public class Node {
     	return flag;
     }
     
-    public int Posicao(int n) {
+    public int posicao(int n) {
     	if(n == this.data) {
     		return this.quantEsq +1;
     	}
     	else if(n < this.data) {
     		if(this.leftChild != null) {
-    			return this.leftChild.Posicao(n);
+    			return this.leftChild.posicao(n);
     		}
     	}
     	else{
     		if(this.rightChild != null) {
     			return this.quantEsq + 1 +
-    					this.rightChild.Posicao(n);
+    					this.rightChild.posicao(n);
     		}
     	}
     	//Gambiarra
     	return -1000000;
     }
     
-    public int Mediana() {
+    public int mediana() {
         int tamanho = this.quantEsq + this.quantDir + 1;
         return this.enesimoElemento(tamanho/2);
     }
-    public double Media(int x) {
-    	if(Posicao(x) > 0) {
-    		int pos = Posicao(x);
+    public double media(int x) {
+    	if(posicao(x) > 0) {
+    		int pos = posicao(x);
 	    	if(pos == this.quantEsq +1) {
 	    		if(this.leftChild != null && this.rightChild !=null) {
-	    			return (double)(this.leftChild.data + this.rightChild.data)/2;
+	    			return (double)(x + this.leftChild.data + this.rightChild.data)/3;
 	    		}
 	    		else if(this.leftChild != null && this.rightChild == null) {
-	    			return (double)(this.leftChild.data);
+	    			return (double)((x + this.leftChild.data)/2);
 	    		}
 	    		else if(this.leftChild == null && this.rightChild != null) {
-	    			return (double)(this.rightChild.data);
+	    			return (double)((x + this.rightChild.data)/2);
 	    		}
 	    		else
 	    			return -1;
 	    	}
 	    	else if(pos <= this.quantEsq) {
-	    		return this.leftChild.Media(x);
+	    		return this.leftChild.media(x);
 	    	}
 	    	else {
-	    		return this.rightChild.Media(x);
+	    		return this.rightChild.media(x);
 	    	}
     	}
     	else
@@ -142,29 +142,12 @@ public class Node {
         return true;
     }
     
-    public boolean ZeroDoisFilhos() {
-    	if(this.leftChild == null && this.rightChild != null ||
-    			this.leftChild != null && this.rightChild == null) {
-    		return false;
-    	}
-    	else
-    		return true;
-    }
     public boolean ehCheia() {
         /*
         * Achar a altura dos nodos, se os nodos de altura 
         * menor que (getAltura()) tiverem this.leftchild
         * ou this.rightchild == null ela não é completa.
          */
-    	if(this.leftChild != null) {
-    		this.leftChild.ehCheia();
-    	}
-    	if(this.rightChild != null) {
-    		this.rightChild.ehCheia();
-    	}
-    	if(this.ZeroDoisFilhos()) {
-    		return false;
-    	}
         return true;
     }
     
@@ -180,13 +163,12 @@ public class Node {
     
     public int minimo() {
 
-        if (leftChild == null)
-
-              return data;
-
-        else
-
+        if (leftChild == null) {
+        	return data;
+        }
+        else {
               return leftChild.minimo();
+        }
 
   }
     
@@ -214,7 +196,7 @@ public class Node {
             System.out.print(")");
         }
     }
-
+    
     public boolean remove(Node parente, int data) {
 
         if (data < this.data) {
