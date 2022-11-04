@@ -196,47 +196,4 @@ public class Node {
             System.out.print(")");
         }
     }
-    
-    public boolean remove(Node parente, int data) {
-
-        if (data < this.data) {
-        	if (leftChild != null) {
-        		return leftChild.remove(this, data);
-              }
-        	else {
-        		return false;
-        	}
-        } 
-        else if (data > this.data) {
-        	if (rightChild != null) {
-        		return rightChild.remove(this, data);
-        	}
-        	else{
-        		return false;
-        	}
-        } 
-        else {
-        	if (leftChild != null && rightChild != null) {
-        		this.data = rightChild.minimo();
-                rightChild.remove(this, this.data);
-            } 
-        	else if (parente.leftChild == this) {
-        		if(leftChild != null) {
-        			parente.leftChild = leftChild;
-        		}
-        		else {
-        			parente.leftChild = rightChild;
-        		}
-            } 
-        	else if (parente.rightChild == this) {
-        		if(parente.leftChild != null) {
-        			parente.rightChild = leftChild;
-        		}
-        		else {
-        			parente.rightChild = rightChild;
-        		}
-            }
-        	return true;
-        }
-  }
 }
