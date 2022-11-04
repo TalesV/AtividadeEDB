@@ -40,7 +40,7 @@ public class ArvoreView {
 		
 		tree.insert(15);
 		tree.insert(39);
-		tree.remove(32);
+		tree.remover(32);
 		tree.media(39);
 		tree.preordem();
 		tree.mediana();
@@ -49,7 +49,7 @@ public class ArvoreView {
 		tree.media(60); // Não possui nós filhos
 		tree.media(31); // Não pertence a árvore
 		tree.media(13); // Caso problema --> 5 20. Deveria dar 12.5
-		tree.Buscar(20);
+		tree.buscar(20);
 		
 	}
 }
