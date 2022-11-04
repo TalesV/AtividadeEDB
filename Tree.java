@@ -1,5 +1,7 @@
 package imd.edb;
 
+import java.text.DecimalFormat;
+
 public class Tree {
     
     protected static Node root;
@@ -193,16 +195,14 @@ public class Tree {
         System.out.println(root.mediana());
     }
     
+    public void quantSub(int n) {
+        System.out.println(root.quantSub(root.buscarNode(n)));
+    }
+    
     public void media(int x) {
-    	if(root.media(x) == -2) {
-    		System.out.println("O elemento não pertence a arvore.");
-    	}
-    	else if(root.media(x) == -1) {
-    		System.out.println("O elemento não possui nós filhos.");
-    	}
-    	else {
-    		System.out.println("A media e: "+ root.media(x));
-    	}
+    	DecimalFormat format = new DecimalFormat("#.##");
+    	System.out.println(format.format(root.media(x)));
+    	
     }
     public void enesimoElemento (int n) {
     	System.out.println("A posição " +n+" é: "+
@@ -218,6 +218,15 @@ public class Tree {
     		System.out.println("Chave não encontrada");
     	}
     }
+    public void buscarNode(int n) {
+    	root.buscarNode(n);
+    	if(root.buscarNode(n) != null) {
+    		System.out.println(root.buscarNode(n).data);
+    	}
+    	else {
+    		System.out.println("não encontrada");
+    	}
+    }
   
     public void posicao(int n) {
         if(root.posicao(n) <= 0) {
@@ -227,5 +236,13 @@ public class Tree {
             System.out.println("O elemento "
                     + n + " esta na " + root.posicao(n)+"ª posicao!");
         }
+    } 
+    
+    public int soma(Node root)
+    {
+        if (root == null)
+            return 0;
+        return (root.data + soma(root.leftChild) +
+                           soma(root.rightChild));
     }
 }
