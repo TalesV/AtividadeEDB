@@ -1,2 +1,2 @@
 # AtividadeEDB [Check Points]
-![AFAZERES](https://user-images.githubusercontent.com/82955856/200036237-14bcaef3-e968-46f8-8784-be76cbc1c8b9.png)
+![Afazeres](https://user-images.githubusercontent.com/82955856/200072573-a182dddb-22bd-4f84-8689-02750947f3b1.png)
