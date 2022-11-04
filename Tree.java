@@ -65,32 +65,95 @@ public class Tree {
     		System.out.println("A árvore não é cheia.");
     	}
     }
-    public void remove(int data) {
+    
+    public boolean remover(int data) {
+        
     	if (root == null) {
-    		System.out.println("Árvore vazia");
-    	}
-        else {
-        	if (root.data == data) {
-        		
-        		Node nodeAuxiliar = new Node(0);
-                nodeAuxiliar.setLeftChild(root);
-                boolean resultado = root.remove(nodeAuxiliar, data);
-                root = nodeAuxiliar.leftChild;
-                if (resultado == true) {
-                	System.out.println(data +" Removido");
-                }
-            } 
-        	else {
-        		 boolean resulta = root.remove(null, data);
-        		 if (resulta == true) {
-                 	System.out.println(data +" Removido");
-                 }
-                 else {
-                 	System.out.println(data +" não está na árvore, não pode ser removido");
-                 }
-            }
+        	return false; 
         }
-    }
+
+        Node current = root;
+        Node father = root;
+        boolean leftChild = true;
+
+        while (current.data != data) {
+          father = current;
+          if(data < current.data ) { 
+            current = current.leftChild;
+            leftChild = true;
+          }
+          else {
+            current = current.rightChild; 
+            leftChild = false;
+          }
+          if (current == null) return false; 
+        } 
+
+        if (current.leftChild == null && current.rightChild == null) {
+          if (current == root ) {
+        	  root = null;
+          }
+          else if (leftChild) {
+        	  father.leftChild = null; 
+          }
+          else {
+        	  father.rightChild = null; 
+          }
+        }
+
+        else if (current.rightChild == null) {
+           if (current == root) {
+        	   root = current.leftChild; 
+           }
+           else if (leftChild) {
+        	   father.leftChild = current.leftChild;
+           }
+           else {
+        	   father.rightChild = current.leftChild; 
+           }
+        }
+        
+        else if (current.leftChild == null) {
+           if (current == root) {
+        	   root = current.rightChild;
+           }
+           else if (leftChild) {
+        	   father.leftChild = current.rightChild;
+           }
+           else {
+        	   father.rightChild = current.rightChild; 
+           }
+        }
+
+        else {
+          Node sucessor = no_sucessor(current);
+          if (current == root) root = sucessor;
+          else if(leftChild) father.leftChild = sucessor; 
+               else father.rightChild = sucessor; 
+          sucessor.leftChild = current.leftChild; 
+                                    
+        }
+
+        return true;
+      }
+    
+    public Node no_sucessor(Node delete) {
+        Node successorFather = delete;
+        Node sucessor = delete;
+        Node current = delete.rightChild; 
+
+        while (current != null) { 
+          successorFather = sucessor;
+          sucessor = current;
+          current = current.leftChild;
+        } 
+        if (sucessor != delete.rightChild) { 
+          successorFather.leftChild = sucessor.rightChild; 
+          sucessor.rightChild = delete.rightChild; 
+                                   
+        }
+        return sucessor;
+     }
     
     public int contadorNodes() {
     	
@@ -126,19 +189,19 @@ public class Tree {
     	}
     	return contador;	
     }
-    public void Mediana() {
-        System.out.println(root.Mediana());
+    public void mediana() {
+        System.out.println(root.mediana());
     }
     
-    public void Media(int x) {
-    	if(root.Media(x) == -2) {
+    public void media(int x) {
+    	if(root.media(x) == -2) {
     		System.out.println("O elemento não pertence a arvore.");
     	}
-    	else if(root.Media(x) == -1) {
+    	else if(root.media(x) == -1) {
     		System.out.println("O elemento não possui nós filhos.");
     	}
     	else {
-    		System.out.println("A media e: "+ root.Media(x));
+    		System.out.println("A media e: "+ root.media(x));
     	}
     }
     public void enesimoElemento (int n) {
@@ -146,7 +209,7 @@ public class Tree {
     			root.enesimoElemento(n));
     }
     
-    public void Buscar(int n) {
+    public void buscar(int n) {
     	root.Buscar(n);
     	if(root.Buscar(n) == true) {
     		System.out.println("Chave encontrada");
@@ -156,13 +219,13 @@ public class Tree {
     	}
     }
   
-    public void Posicao(int n) {
-        if(root.Posicao(n) <= 0) {
+    public void posicao(int n) {
+        if(root.posicao(n) <= 0) {
             System.out.println("O elemento não faz parte da arvore.");
         }
         else {
             System.out.println("O elemento "
-                    + n + " esta na " + root.Posicao(n)+"ª posicao!");
+                    + n + " esta na " + root.posicao(n)+"ª posicao!");
         }
     }
 }
