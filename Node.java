@@ -1,5 +1,6 @@
 package imd.edb;
 
+
 public class Node {
     protected Node leftChild;
     protected Node rightChild;
@@ -83,6 +84,24 @@ public class Node {
     	return flag;
     }
     
+    public Node buscarNode(int n) {
+    	Node aux = null;
+    	if(n == this.data) {
+    		aux = this;
+    	}
+    	else if(n < this.data) {
+    		if(this.leftChild != null) {
+    			aux = this.leftChild.buscarNode(n);
+    		}
+    	}
+    	else {
+    		if(this.rightChild != null) {
+    			aux = this.rightChild.buscarNode(n);
+    		}
+    	}
+    	return aux;
+    }
+    
     public int posicao(int n) {
     	if(n == this.data) {
     		return this.quantEsq +1;
@@ -106,33 +125,7 @@ public class Node {
         int tamanho = this.quantEsq + this.quantDir + 1;
         return this.enesimoElemento(tamanho/2);
     }
-    public double media(int x) {
-    	if(posicao(x) > 0) {
-    		int pos = posicao(x);
-	    	if(pos == this.quantEsq +1) {
-	    		if(this.leftChild != null && this.rightChild !=null) {
-	    			return (double)(x + this.leftChild.data + this.rightChild.data)/3;
-	    		}
-	    		else if(this.leftChild != null && this.rightChild == null) {
-	    			return (double)((x + this.leftChild.data)/2);
-	    		}
-	    		else if(this.leftChild == null && this.rightChild != null) {
-	    			return (double)((x + this.rightChild.data)/2);
-	    		}
-	    		else
-	    			return -1;
-	    	}
-	    	else if(pos <= this.quantEsq) {
-	    		return this.leftChild.media(x);
-	    	}
-	    	else {
-	    		return this.rightChild.media(x);
-	    	}
-    	}
-    	else
-    		return -2;
-    }
-
+    
     public boolean ehCompleta() {
         /*
          * Achar a altura dos nodos, se os nodos de altura 
@@ -195,5 +188,30 @@ public class Node {
                 this.rightChild.imprimeCase2();
             System.out.print(")");
         }
+    }
+    
+    public int soma(Node root)
+    {
+        if (root == null)
+            return 0;
+        return (root.data + soma(root.leftChild) +
+                           soma(root.rightChild));
+    }
+    
+    public int quantSub(Node node) {
+  
+    	if(node==null)
+             return 0;
+        //recursive call to left child and right child and
+        // add the result of these with 1 ( 1 for counting the root)
+        return 1 + quantSub(node.leftChild) + quantSub(node.rightChild);
+    }
+    
+    public double media(int x) {
+    	double soma = soma(buscarNode(x));
+    	double contador = quantSub(buscarNode(x));
+    	double media = soma/contador;
+    	return media;
+    	
     }
 }
