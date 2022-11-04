@@ -22,9 +22,10 @@ public class ArvoreView {
         for(int i=0; i<quantidade; i++) {
            itens[i] = Integer.parseInt(linhaArray[i]);
         }
-
+        //Instancia a arvore
         Tree tree = new Tree();
-
+        
+        //insere os itens na arvore
         for (int i : itens) {
             tree.insert(i);
         }
@@ -37,12 +38,17 @@ public class ArvoreView {
 		tree.preordem();
 		
 		
-		tree.Mediana();
-		tree.Media(32); // Possui dois nós filhos --> 13 e 41
-		tree.Media(41); // Possui um nó filho --> 60
-		tree.Media(60); // Não possui nós filhos
-		tree.Media(31); // Não pertence a árvore
-		tree.Media(13); // Caso problema --> 5 20. Deveria dar 12.5
+		tree.insert(15);
+		tree.insert(39);
+		tree.remove(32);
+		tree.media(39);
+		tree.preordem();
+		tree.mediana();
+		tree.media(32); // Possui dois nós filhos --> 13 e 41
+		tree.media(41); // Possui um nó filho --> 60
+		tree.media(60); // Não possui nós filhos
+		tree.media(31); // Não pertence a árvore
+		tree.media(13); // Caso problema --> 5 20. Deveria dar 12.5
 		tree.Buscar(20);
 		
 	}
