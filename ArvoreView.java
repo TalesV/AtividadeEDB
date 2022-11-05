@@ -23,37 +23,34 @@ public class ArvoreView {
            itens[i] = Integer.parseInt(linhaArray[i]);
         }
         //Instancia a arvore
-        Tree tree = new Tree();
+        Arvore tree = new Arvore();
         
         //insere os itens na arvore
         for (int i : itens) {
-            tree.insert(i);
+            tree.inserir(i);
         }
-		
-		tree.imprimeArvore(1);
-		/*tree.imprimeArvore(2);
-		
-		System.out.println();
+		tree.ehCheia();
+		tree.ehCompleta();
 		tree.enesimoElemento(3);
+		tree.inserir(36);
+		tree.ehCheia();
 		tree.preordem();
-		
-		
-		tree.insert(15);
-		tree.insert(39);
+		tree.imprimeArvore(1);
+		tree.imprimeArvore(2);
+		tree.remover(50);
+		tree.inserir(15);
+		tree.inserir(39);
 		tree.remover(32);
-		tree.media(39);
-		tree.preordem();
+		tree.posicao(15);
+		tree.inserir(39);
+		tree.enesimoElemento(5);
 		tree.mediana();
-		tree.media(32); // Possui dois nós filhos --> 13 e 41
-		tree.media(41); // Possui um nó filho --> 60
-		tree.media(60); // Não possui nós filhos
-		tree.media(31); // Não pertence a árvore
-		tree.media(13); // Caso problema --> 5 20. Deveria dar 12.5
-		tree.buscar(20);*/
-        tree.buscarNode(5);
-        tree.buscar(5);
-        tree.media(13);
-        tree.quantSub(60);
-		
+		tree.media(20);
+		tree.media(36);
+		tree.buscar(36);
+		tree.inserir(25);
+		tree.mediana();
+        
+
 	}
 }
