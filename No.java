@@ -117,13 +117,7 @@ public class No {
 		}
 		return aux;
 	}
-	/* Método irrelevante olhar a substituição no método média.
-	private int quantSubArvore(No atual) {
-		if(atual==null)
-			return 0;
-		return 1 + quantSubArvore(atual.filhoEsq) + quantSubArvore(atual.filhoDir);
-	}*/
-	
+
 	private int soma(No atual)
 	{
 		if (atual == null)
