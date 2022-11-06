@@ -181,12 +181,12 @@ public class Arvore {
 	}
 	
 	private void mediana() {
-		System.out.println(raiz.mediana());
+		System.out.println("Mediana: " + raiz.mediana());
 	}
 	
 	private void media(int x) {
 		DecimalFormat format = new DecimalFormat("#.###");
-		System.out.println(format.format(raiz.media(x)));
+		System.out.println("Media: "+ format.format(raiz.media(x)));
 
 	}
 	
