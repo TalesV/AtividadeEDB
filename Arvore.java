@@ -44,7 +44,7 @@ public class Arvore {
 		attQuantEsqDir(raiz);
 	}
 	
-	public void buscar(int n) {
+	private void buscar(int n) {
 		if(raiz.buscar(n) == true) {
 			System.out.println("Chave encontrada");
 		}
@@ -74,90 +74,90 @@ public class Arvore {
 	}
 	//Esse método serve para uma linha do remover
 	private No no_sucessor(No delete) {
-		No successorFather = delete;
+		No successorpai = delete;
 		No sucessor = delete;
-		No current = delete.filhoDir; 
+		No atual = delete.filhoDir; 
 
-		while (current != null) { 
-			successorFather = sucessor;
-			sucessor = current;
-			current = current.filhoEsq;
+		while (atual != null) { 
+			successorpai = sucessor;
+			sucessor = atual;
+			atual = atual.filhoEsq;
 		} 
 		if (sucessor != delete.filhoDir) { 
-			successorFather.filhoEsq = sucessor.filhoDir; 
+			successorpai.filhoEsq = sucessor.filhoDir; 
 			sucessor.filhoDir = delete.filhoDir; 
 
 		}
 		return sucessor;
 	}
 	
-	public boolean remover(int data) {
+	private boolean remover(int data) {
 
 		if (raiz == null) {
 			return false; 
 		}
 
-		No current = raiz;
-		No father = raiz;
+		No atual = raiz;
+		No pai = raiz;
 		boolean filhoEsq = true;
-		while (current.data != data) {
-			father = current;
-			if(data < current.data ) { 
-				current = current.filhoEsq;
+		while (atual.data != data) {
+			pai = atual;
+			if(data < atual.data ) { 
+				atual = atual.filhoEsq;
 				filhoEsq = true;
 			}
 			else {
-				current = current.filhoDir; 
+				atual = atual.filhoDir; 
 				filhoEsq = false;
 			}
-			if (current == null) {
+			if (atual == null) {
 				System.out.println(data+" não está na árvore, não pode ser removido!");
 				return false; 
 			}
 		} 
 
-		if (current.filhoEsq == null && current.filhoDir == null) {
-			if (current == raiz ) {
+		if (atual.filhoEsq == null && atual.filhoDir == null) {
+			if (atual == raiz ) {
 				raiz = null;
 			}
 			else if (filhoEsq) {
-				father.filhoEsq = null; 
+				pai.filhoEsq = null; 
 			}
 			else {
-				father.filhoDir = null; 
+				pai.filhoDir = null; 
 			}
 		}
 
-		else if (current.filhoDir == null) {
-			if (current == raiz) {
-				raiz = current.filhoEsq; 
+		else if (atual.filhoDir == null) {
+			if (atual == raiz) {
+				raiz = atual.filhoEsq; 
 			}
 			else if (filhoEsq) {
-				father.filhoEsq = current.filhoEsq;
+				pai.filhoEsq = atual.filhoEsq;
 			}
 			else {
-				father.filhoDir = current.filhoEsq; 
+				pai.filhoDir = atual.filhoEsq; 
 			}
 		}
 
-		else if (current.filhoEsq == null) {
-			if (current == raiz) {
-				raiz = current.filhoDir;
+		else if (atual.filhoEsq == null) {
+			if (atual == raiz) {
+				raiz = atual.filhoDir;
 			}
 			else if (filhoEsq) {
-				father.filhoEsq = current.filhoDir;
+				pai.filhoEsq = atual.filhoDir;
 			}
 			else {
-				father.filhoDir = current.filhoDir; 
+				pai.filhoDir = atual.filhoDir; 
 			}
 		}
 
 		else {
-			No sucessor = no_sucessor(current);
-			if (current == raiz) raiz = sucessor;
-			else if(filhoEsq) father.filhoEsq = sucessor; 
-			else father.filhoDir = sucessor; 
-			sucessor.filhoEsq = current.filhoEsq; 
+			No sucessor = no_sucessor(atual);
+			if (atual == raiz) raiz = sucessor;
+			else if(filhoEsq) pai.filhoEsq = sucessor; 
+			else pai.filhoDir = sucessor; 
+			sucessor.filhoEsq = atual.filhoEsq; 
 
 		}
 		System.out.println(data+" Removido!");
@@ -165,12 +165,12 @@ public class Arvore {
 		return true;
 	}
 	
-	public void enesimoElemento (int n) {
+	private void enesimoElemento (int n) {
 		System.out.println("A posição " +n+" é: "+
 				raiz.enesimoElemento(n));
 	}
 	
-	public void posicao(int n) {
+	private void posicao(int n) {
 		if(raiz.posicao(n) <= 0) {
 			System.out.println("O elemento não faz parte da arvore.");
 		}
@@ -180,17 +180,17 @@ public class Arvore {
 		}
 	}
 	
-	public void mediana() {
+	private void mediana() {
 		System.out.println(raiz.mediana());
 	}
 	
-	public void media(int x) {
+	private void media(int x) {
 		DecimalFormat format = new DecimalFormat("#.###");
 		System.out.println(format.format(raiz.media(x)));
 
 	}
 	
-	public void ehCheia() {
+	private void ehCheia() {
 		int nosArvore = (raiz.quantEsq + raiz.quantDir + 1);
 		int totalNos = (int)(Math.pow(2, raiz.altura) - 1);
 		if(nosArvore == totalNos) {
@@ -217,7 +217,7 @@ public class Arvore {
 		return flag;
 	}
 	
-	public void ehCompleta() {
+	private void ehCompleta() {
 		if(completa(raiz, 0) > 0) {
 			System.out.println("A árvore não é completa!");
 		}
@@ -225,7 +225,7 @@ public class Arvore {
 			System.out.println("A árvore é completa!");
 	}
 	
-	public void preordem() {
+	private void preordem() {
 		if (raiz != null) {
 			System.out.println();
 			System.out.print("Pre Ordem: ");
@@ -234,7 +234,7 @@ public class Arvore {
 		}
 	}
 
-	public void imprimeArvore(int s){
+	private void imprimeArvore(int s){
 		switch(s){
 		//caso "s" == 1
 		//chama metodo que imprime no formato 1
@@ -257,6 +257,52 @@ public class Arvore {
 		default:
 			System.out.println("Valor inserido para impressão inválido!");
 
+		}
+	}
+
+	public void metodo(String metodo, String parametro) {
+		if(metodo.equals("BUSCAR") && !parametro.equals("")) {
+			int n = Integer.parseInt(parametro);
+			buscar(n);
+		}
+		else if(metodo.equals("INSIRA") && !parametro.equals("")) {
+			int n = Integer.parseInt(parametro);
+			inserir(n);
+		}
+		else if(metodo.equals("REMOVA") && !parametro.equals("")) {
+			int n = Integer.parseInt(parametro);
+			remover(n);
+		}
+		else if(metodo.equals("ENESIMO") && !parametro.equals("")) {
+			int n = Integer.parseInt(parametro);
+			enesimoElemento(n);
+		}
+		else if(metodo.equals("POSICAO") && !parametro.equals("")) {
+			int n = Integer.parseInt(parametro);
+			posicao(n);
+		}
+		else if(metodo.equals("MEDIANA") && parametro.equals("")) {
+			mediana();
+		}
+		else if(metodo.equals("MEDIA") && !parametro.equals("")) {
+		int n = Integer.parseInt(parametro);
+		media(n);
+		}
+		else if(metodo.equals("CHEIA") && parametro.equals("")) {
+			ehCheia();
+		}
+		else if(metodo.equals("COMPLETA") && parametro.equals("")) {
+			ehCompleta();
+		}
+		else if(metodo.equals("PREORDEM") && parametro.equals("")) {
+			preordem();
+		}
+		else if(metodo.equals("IMPRIMA") && !parametro.equals("")) {
+			int n = Integer.parseInt(parametro);
+			imprimeArvore(n);
+		}
+		else {
+			System.out.println("Esse método " + metodo + " não foi implementado!");
 		}
 	}
 }
