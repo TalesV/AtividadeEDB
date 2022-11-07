@@ -4,6 +4,7 @@ public class Arvore {
 
 	protected static No raiz;
 	
+	// Método auxiliar que atualiza a cada inserção ou remocão os atributos quantidade esquerda e quantidade direita.
 	private void attQuantEsqDir(No atual) {
 		if(atual.filhoEsq != null) {
 			attQuantEsqDir(atual.filhoEsq);
@@ -28,6 +29,8 @@ public class Arvore {
 			atual.quantDir = 0;
 		}
 	}
+	
+	// Método auxiliar que atualiza a cada inserção ou remocão o altura.
 	private void attAltura(No atual) {
 		if(atual.filhoEsq != null) {
 			atual.filhoEsq.altura = atual.altura - 1;
@@ -38,12 +41,15 @@ public class Arvore {
 			attAltura(atual.filhoDir);
 		}
 	}
+	
+	// Método auxiliar que atualiza a cada inserção ou remocão os atributos do nó.
 	private void attElementos() {
 		raiz.altura = getAltura(raiz);
 		attAltura(raiz);
 		attQuantEsqDir(raiz);
 	}
 	
+	// Imprime uma String com a informação se um nó existe ou não na árvore. 
 	private void buscar(int n) {
 		if(raiz.buscar(n) == true) {
 			System.out.println("Chave encontrada");
@@ -53,6 +59,7 @@ public class Arvore {
 		}
 	}
 	
+	// Insere um nó na ABB, o método recebe o valor que será o dado do nó.
 	public void inserir(int val) {
 		if (raiz == null) {
 			raiz = new No(val);
@@ -61,6 +68,8 @@ public class Arvore {
 			raiz.inserir(val);
 		attElementos(); //atualiza altura, quantEsq e quantDir após a inserção
 	}
+	
+	// Retorna a altura da árvore.
 	private int getAltura(No atual) {
 		int altEsq = 0, altDir = 0;
 
@@ -72,7 +81,9 @@ public class Arvore {
 
 		return 1 + Math.max(altEsq, altDir);
 	}
-	//Esse método serve para uma linha do remover
+	
+	
+	// Método auxiliar para o método "remover", retorna o nó sucessor.
 	private No no_sucessor(No delete) {
 		No successorpai = delete;
 		No sucessor = delete;
@@ -91,6 +102,7 @@ public class Arvore {
 		return sucessor;
 	}
 	
+	// Remove um nó na ABB, o método recebe o valor do dado do nó que será removido.
 	private boolean remover(int data) {
 
 		if (raiz == null) {
@@ -165,11 +177,13 @@ public class Arvore {
 		return true;
 	}
 	
+	// Imprime o n-ésimo elemento (contando a partir de 1) do percurso em ordem (ordem simétrica) da ABB.
 	private void enesimoElemento (int n) {
 		System.out.println("A posição " +n+" é: "+
 				raiz.enesimoElemento(n));
 	}
 	
+	// Imprime a posição de um nó caso este fizer parte da árvore, o método recebe o valor do dado do nó a ser analisado.
 	private void posicao(int n) {
 		if(raiz.posicao(n) <= 0) {
 			System.out.println("O elemento não faz parte da arvore.");
@@ -180,16 +194,19 @@ public class Arvore {
 		}
 	}
 	
+	// Imprime o elemento que contém a mediana da ABB. Se a ABB possuir um número par de elementos, imprimirá o menor dentre os dois elementos medianos.
 	private void mediana() {
 		System.out.println("Mediana: " + raiz.mediana());
 	}
 	
+	//  Imprime a média aritmética dos nós da árvore que x é a raiz.
 	private void media(int x) {
-		DecimalFormat format = new DecimalFormat("#.###");
+		DecimalFormat format = new DecimalFormat("#.###"); //formata a média para que não tenha excesso de dígitos. 
 		System.out.println("Media: "+ format.format(raiz.media(x)));
 
 	}
 	
+	// Imprime se a árvore é ou não é cheia.
 	private void ehCheia() {
 		int nosArvore = (raiz.quantEsq + raiz.quantDir + 1);
 		int totalNos = (int)(Math.pow(2, raiz.altura) - 1);
@@ -200,6 +217,7 @@ public class Arvore {
 			System.out.println("A árvore não é cheia!");
 	}
 	
+	// Método auxiliar para o método "ehCompleta", ele analisa todos os nós com altura maior que 2 e incrementa na flag caso esses nós não tenham filhos.
 	private int completa(No atual, int flag) {
 		if(atual.altura > 2) {
 			if(atual.filhoEsq == null || atual.filhoDir == null) {
@@ -217,6 +235,7 @@ public class Arvore {
 		return flag;
 	}
 	
+	// Imprime se a árvore é ou não é completa.
 	private void ehCompleta() {
 		if(completa(raiz, 0) > 0) {
 			System.out.println("A árvore não é completa!");
@@ -225,6 +244,8 @@ public class Arvore {
 			System.out.println("A árvore é completa!");
 	}
 	
+	// Imprime uma String que contém a sequência de visitação (percorrimento) da ABB em pré-ordem.
+
 	private void preordem() {
 		if (raiz != null) {
 			System.out.println();
@@ -236,16 +257,16 @@ public class Arvore {
 
 	private void imprimeArvore(int s){
 		switch(s){
-		//caso "s" == 1
-		//chama metodo que imprime no formato 1
+		//caso "s" == 1.
+		//chama metodo que imprime no formato 1.
 		case 1:
 			System.out.println("Formato 1:");
 			raiz.imprimeCaso1("\n");
 			System.out.println();
 			break;
 
-			//caso "s" == 2
-			//chama metodo que imprime no formato 2 
+			//caso "s" == 2.
+			//chama metodo que imprime no formato 2.
 		case 2:
 			System.out.println("Formato 2:");
 			raiz.imprimeCaso2();
@@ -253,13 +274,14 @@ public class Arvore {
 			System.out.println();
 
 			break;
-			// caso não seja um parametro aceito
+			// caso não seja um parametro aceito.
 		default:
 			System.out.println("Valor inserido para impressão inválido!");
 
 		}
 	}
 
+	// Chama os métodos listados no arquivo2.txt.
 	public void metodo(String metodo, String parametro) {
 		if(metodo.equals("BUSCAR") && !parametro.equals("")) {
 			int n = Integer.parseInt(parametro);
