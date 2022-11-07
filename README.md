@@ -24,17 +24,16 @@ O objeto desse projeto é avaliar nosso conhecimento adquirido no decorrer do se
 
 <h2 id="usage" > 💻 Descrição </h2>
 
-Para rodar o projeto em sua maquina basta baixar os arquivos
-
-
+Para rodar o projeto em sua maquina basta baixar os arquivos.
 
 Em seguida, passe os arquivos para o Eclipse, basta criar um projeto Java com os arquivos do projeto, depois já pode rodar.
 Caso queira adicionar mais números para análise, edite o arquivo1.txt, se quiser adicionar mais métodos utilize o arquivo2.txt.
 Se quiser adicionar outros arquivos para inserção e entrada de métodos, basta substituir no código a parte onde localiza-se os diretórios dos arquivos.
 
-
 Caso você copie o código para o eclipse ou qualquer outra IDE, atente-se no detalhe que o arquivo1.txt e o arquivo2.txt precisam estar dentro do projeto, senão acarretará erros de compilação.
 
+LEMBRE-SE:
+Os arquivos .java precisam estar em uma package com nome [imd.edb], caso não queira criar a pasta, basta exluir o diretorio do packge nos arquivos .java
 
 
 Divirta-se com o programa que foi criado!
