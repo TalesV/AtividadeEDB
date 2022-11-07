@@ -39,8 +39,7 @@ E divirta-se com o programa que foi criado.
 
 <h2 id="teacher"> 💻 Projeto base </h2>
 
-O projeto base pode ser encontrado em: [Projeto EDB](https://github.com/TalesV/AtividadeEDB/files/9954431/trabalho_uni2.pdf)
-).
+O projeto base pode ser encontrado em: [Projeto EDB](https://github.com/TalesV/AtividadeEDB/files/9954431/trabalho_uni2.pdf).
 
 
 Criado pelo Professor, [Sidemar Fideles Cezario]
