@@ -33,6 +33,9 @@ Caso queira adicionar mais números para análise, edite o arquivo1.txt, se quis
 Se quiser adicionar outros arquivos para inserção e entrada de métodos, basta substituir no código a parte onde localiza-se os diretórios dos arquivos.
 
 
+Caso você copie o código para o eclipse ou qualquer outra IDE, atente-se no detalhe que o arquivo1.txt e o arquivo2.txt precisam estar dentro do projeto, senão acarretará erros de compilação.
+
+
 
 Divirta-se com o programa que foi criado!
 
