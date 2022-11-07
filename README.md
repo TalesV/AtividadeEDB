@@ -2,7 +2,7 @@
 <h1 align="center">
     Projeto EDB2 2022.2 - ABB
 </h1>
-<p align="center"> O programa simula um comportamento de uma árvore binária de busca(ABB) 💻 </p>
+<p align="center"> O programa simula um comportamento de uma árvore binária de busca (ABB) 💻 </p>
 
 <p align="center">
  <a href="#students">Alunos</a> •
