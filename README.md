@@ -34,6 +34,9 @@ Caso você copie o código para o eclipse ou qualquer outra IDE, atente-se no de
 
 LEMBRE-SE:
 Os arquivos .java precisam estar em uma package com nome [imd.edb], caso não queira criar a pasta, basta exluir o diretorio do packge nos arquivos .java
+Desse jeito:
+![image](https://user-images.githubusercontent.com/82955856/200402355-c92ec927-775c-4d85-9aba-f9375e82e291.png)
+
 
 
 Divirta-se com o programa que foi criado!
