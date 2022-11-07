@@ -30,7 +30,7 @@ Para rodar o projeto em sua maquina basta baixar os arquivos
 
 Em seguida, rodar o projeto:
 Utilizando o Eclipse, basta criar um projeto Java com os arquivos do projeto, depois já pode rodar.
-Caso queira adicionar mais números para analise, edite o arquivo1.txt, se quiser adicionar mais métodos utilize o arquivo2.txt
+Caso queira adicionar mais números para analise, edite o arquivo1.txt, se quiser adicionar mais métodos utilize o arquivo2.txt.
 Se quiser adicionar outros arquivos para inserção e entrada de métodos, basta substituir no código a parte onde localiza-se os diretorios dos arquivos.
 
 
