@@ -201,8 +201,11 @@ public class Arvore {
 	
 	//  Imprime a média aritmética dos nós da árvore que x é a raiz.
 	private void media(int x) {
-		DecimalFormat format = new DecimalFormat("#.###"); //formata a média para que não tenha excesso de dígitos. 
-		System.out.println("Media: "+ format.format(raiz.media(x)));
+		DecimalFormat format = new DecimalFormat("#.###"); //formata a média para que não tenha excesso de dígitos.
+		if(raiz.media(x) != -1)
+			System.out.println("Media: "+ format.format(raiz.media(x)));
+		else
+			System.out.println("O elemento informado não existe!");
 
 	}
 	
@@ -217,19 +220,26 @@ public class Arvore {
 			System.out.println("A árvore não é cheia!");
 	}
 	
-	// Método auxiliar para o método "ehCompleta", ele analisa todos os nós com altura maior que 2 e incrementa na flag caso esses nós não tenham filhos.
-	private int completa(No atual, int flag) {
+	/* Método analisa todos os nós com altura maior que 2 e muda caso algum desses nós
+	   não possua um ou ambos filhos o elemento auxiliar é falso e ocorre o retorno cedo
+	   já que não é necessário analisar os outros elementos.
+	*/
+	private boolean completa(No atual) {
+		boolean flag = true;
 		if(atual.altura > 2) {
 			if(atual.filhoEsq == null || atual.filhoDir == null) {
-				flag += 1;
+				flag = false;
+			}
+			if(flag != true) {
+				return flag;
 			}
 			if(atual.filhoEsq != null) {
 				if(atual.filhoEsq.altura > 1)
-					flag = completa(atual.filhoEsq, flag);
+					flag = completa(atual.filhoEsq);
 			}
 			if(atual.filhoDir != null) {
 				if(atual.filhoEsq.altura > 1)
-					flag = completa(atual.filhoDir, flag);
+					flag = completa(atual.filhoDir);
 			}
 		}
 		return flag;
@@ -237,7 +247,7 @@ public class Arvore {
 	
 	// Imprime se a árvore é ou não é completa.
 	private void ehCompleta() {
-		if(completa(raiz, 0) > 0) {
+		if(completa(raiz) != true) {
 			System.out.println("A árvore não é completa!");
 		}
 		else
